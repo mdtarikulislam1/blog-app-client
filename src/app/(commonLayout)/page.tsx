@@ -1,10 +1,16 @@
+
+
 import { Button } from "@/components/ui/button";
+import { blogService } from "@/services/blog.service";
 import { userService } from "@/services/user.service";
 
 export default async function Home() {
-  const { data, error } = await userService.getSession();
 
 
+   const {data} = await blogService.getBlogPosts()
+ 
+   console.log(data)
+    
   return (
     <div>
       <Button>Button</Button>
