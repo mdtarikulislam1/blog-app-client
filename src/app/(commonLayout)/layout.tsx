@@ -1,11 +1,20 @@
-import Navbar from '@/routes/dynamicroute/NavbarWrapper'
-import React from 'react'
+import Navbar from "@/routes/dynamicroute/NavbarWrapper";
+import React from "react";
 
-export default function Commonlayout({children}:{children:React.ReactNode}) {
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function Commonlayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div>
-         <Navbar/>
-        {children}
+      <Navbar />
+      {children}
     </div>
-  )
+  );
 }

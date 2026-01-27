@@ -1,19 +1,18 @@
-
-
-import { Button } from "@/components/ui/button";
+import BlogCard from "@/components/modules/homePage/blogCard";
 import { blogService } from "@/services/blog.service";
-import { userService } from "@/services/user.service";
+import { BlogPost } from "@/types";
 
 export default async function Home() {
+  const { data } = await blogService.getBlogPosts(
+    { isFeatured: false },
+    { cache: "no-store" },
+  );
 
-
-   const {data} = await blogService.getBlogPosts()
- 
-   console.log(data)
-    
   return (
-    <div>
-      <Button>Button</Button>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 px-4 gap-6 my-7">
+      {data?.data?.map((post: BlogPost) => (
+        <BlogCard key={post.id} post={post} />
+      ))}
     </div>
   );
 }

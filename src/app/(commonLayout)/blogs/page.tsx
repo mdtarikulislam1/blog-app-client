@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>this is blog page</div>
+    <div className='font-bold'>this is blog page f</div>
   )
 }
