@@ -1,9 +1,11 @@
-import { SignupForm } from "@/components/modules/authentication/signup-form"
+import { SignupForm } from "@/components/modules/authentication/signup-form";
 
 export default function Page() {
   return (
-      <div className="w-full max-w-sm mx-auto">
+    <div className="mx-auto w-full max-w-sm flex flex-col justify-center min-h-screen">
+      <div>
         <SignupForm />
       </div>
-  )
+    </div>
+  );
 }

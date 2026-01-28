@@ -1,9 +1,19 @@
+"use client";
 
+import { getBlogs } from "@/actions/blog.action";
+import { useEffect, useState } from "react";
 
-export const dynamic = "force-dynamic"
+export default function Page() {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState<{message:string} | null>(null);
 
-export default async function Page() {
-  await new Promise((resolve) => setTimeout(resolve, 4000));
-
+  useEffect(() => {
+    (async () => {
+      const {data,error} = await getBlogs()
+      setData(data)
+      setError(error)
+    })();
+  }, []);
+  console.log(data)
   return <div>Page</div>;
 }
