@@ -27,8 +27,13 @@ export function LoginForm({
       provider: "google",
       callbackURL: "http://localhost:3000",
     });
+
+    console.log(data);
   };
+
   const session = authClient.useSession();
+
+  console.log(session);
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
