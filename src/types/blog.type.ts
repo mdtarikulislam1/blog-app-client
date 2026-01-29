@@ -1,10 +1,11 @@
 export interface BlogPost {
-  id: string | number;
+  id?: string | number;
   title: string;
+  createdAt:string
   content: string;
   thumbnail?: string | null;
   tags?: string[];
-  views: number;
+  views?: number;
   _count?: {
     comments: number;
   };

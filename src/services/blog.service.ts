@@ -1,4 +1,6 @@
 import { env } from "@/env";
+import { BlogPost } from "@/types";
+import { cookies } from "next/headers";
 
 const API_URL = env.API_URL;
 
@@ -14,6 +16,7 @@ interface ServiceOptions {
 interface GetBlogsParams {
   isFeatured?: boolean;
   search?: string;
+  page?:string;
 }
 
 export const blogService = {
@@ -42,6 +45,8 @@ export const blogService = {
         config.next = { revalidate: options.revalidate };
       }
 
+      config.next = { ...config.next, tags: ["blogPosts"] };
+
       const res = await fetch(url.toString(), config);
 
       const data = await res.json();
@@ -66,5 +71,32 @@ export const blogService = {
       return { data: null, error: err };
     }
   },
-  
+
+  createBlogPost: async (blogData: BlogPost) => {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/posts`, {
+        method: "Post",
+        headers: {
+          "Content-type": "application/json",
+          Cookie: cookieStore.toString(),
+        },
+        body: JSON.stringify(blogData),
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        return {
+          data: null,
+          error: { message: data.error || "Post created faild" },
+        };
+      }
+      return { data: data, error: null };
+    } catch (err) {
+      return {
+        data: null,
+        error: { message: "Something went wrong", details: err },
+      };
+    }
+  },
 };

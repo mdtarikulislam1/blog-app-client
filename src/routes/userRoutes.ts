@@ -4,8 +4,12 @@ export const userRoutes = [
 
     items: [
       {
-        title: "Analytics",
-        url: "/analytics",
+        title: "Create Blog",
+        url: "/dashboard/create-blog",
+      },
+      {
+        title: "History",
+        url: "/dashboard/history",
       },
     ],
   },

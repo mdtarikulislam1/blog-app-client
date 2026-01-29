@@ -79,6 +79,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         >
           Read More &rarr;
         </Link>
+        
       </CardFooter>
     </Card>
   );

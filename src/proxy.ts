@@ -8,7 +8,6 @@ export const proxy = async (request: NextRequest) => {
   let isAuthenticated = false;
   let isAdmin = false;
 
-  console.log(isAdmin);
 
   const { data } = await userService.getSession();
 
@@ -26,7 +25,6 @@ export const proxy = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  console.log("ata tumi janona", pathName);
   return NextResponse.next();
 };
 

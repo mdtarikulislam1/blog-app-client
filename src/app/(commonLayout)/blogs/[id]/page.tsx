@@ -18,13 +18,12 @@ import Image from "next/image";
 import { CommentType } from "@/types/comment.type";
 import { BlogPost } from "@/types";
 
-export const dynamicParams = false
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const { data } = await blogService.getBlogPosts();
-  return data?.data?.map((blog: BlogPost) => ({ id: blog?.id })).splice(0,3);
+  return data?.data?.map((blog: BlogPost) => ({ id: blog?.id })).splice(0, 3);
 }
-
 
 export default async function BlogDetailPage({
   params,
@@ -34,7 +33,6 @@ export default async function BlogDetailPage({
   const { id } = await params;
   const { data } = await blogService.getBlogById(id);
   const blog = data.result;
-
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -103,6 +101,8 @@ export default async function BlogDetailPage({
         <div className="aspect-video mb-12 overflow-hidden rounded-2xl border bg-muted flex items-center justify-center shadow-inner">
           {blog.thumbnail ? (
             <Image
+              width={300}
+              height={400}
               src={blog.thumbnail}
               alt={blog.title}
               className="h-full w-full object-cover hover:scale-105 transition-transform duration-500"

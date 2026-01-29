@@ -14,6 +14,5 @@ export default function Page() {
       setError(error)
     })();
   }, []);
-  console.log(data)
   return <div>Page</div>;
 }
